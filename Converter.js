@@ -90,7 +90,7 @@ function readPHA(x) {
 }
 function writePHA(tr) {
 	const x = tr[0].flatMap((_,y)=>tr.map(r=>r[y]));
-	const st = [tr.length,tr[0].length,...x].map(t=>(1<<20|t).toString(16).slice(1)+',').join('');console.log(st);
+	const st = [tr.length,tr[0].length,...x].map(t=>(1<<20|t).toString(16).slice(1)+',').join('');
 	return st.replace(/(00001,)+/g,e=>(1<<20|e.length/6*2).toString(16).slice(1)).replace(/,/g,'').toUpperCase();
 }
 
