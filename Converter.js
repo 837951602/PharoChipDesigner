@@ -89,9 +89,10 @@ function readPHA(x) {
 	return tr[0].map((_,y)=>tr.map(r=>r[y]));
 }
 function writePHA(tr) {
-	const x = tr[0].flatMap((_,y)=>tr.map(r=>r[y]));
+	const x = tr[0].flatMap((_,y)=>tr.map(r=>r[y]))
+		.map(c=>c&(1<<17)?c:c&~(1<<18)); // PHA don't support via with Silicon but not Metal
 	const st = [tr.length,tr[0].length,...x].map(t=>(1<<20|t).toString(16).slice(1)+',').join('');
-	return st.replace(/(00001,)+/g,e=>(1<<20|e.length/6*2).toString(16).slice(1)).replace(/,/g,'').toUpperCase();
+	return st.replace(/(00001,){1,65536}/g,e=>(1<<20|e.length/6*2).toString(16).slice(1)).replace(/,/g,'').toUpperCase();
 }
 
 const fs = require('fs');
