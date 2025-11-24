@@ -35,7 +35,7 @@ function writeAMF(x, buf) {
 	throw "Unsupported Object";
 }
 function readKOH(x) {
-	if (readAMF(x) != 0x2c || readAMF(x) != 0x1b) throw "Bad header";
+	if (readAMF(x) !== 0x2c || readAMF(x) !== 0x1b) throw "Bad header";
 	const Si = readAMF(x);
 	const Me = readAMF(x);
 	const Vc = readAMF(x);
